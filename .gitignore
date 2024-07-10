@@ -33,6 +33,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env.template
 
 # vercel
 .vercel
@@ -42,4 +43,5 @@ yarn-error.log*
 next-env.d.ts
 
 # seed folder
-/seed
+/src/seed/
+/public/products/
