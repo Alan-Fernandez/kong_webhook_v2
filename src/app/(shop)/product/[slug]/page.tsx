@@ -11,7 +11,8 @@ import {
   SizeSelector,
   StockLabel,
 } from "@/components";
-import { getProductBySlug } from "@/actions";
+
+import { getProductBySlug } from "@/actions/product/get-product-by-slug";
 import { AddToCart } from './ui/AddToCart';
 
 interface Props {

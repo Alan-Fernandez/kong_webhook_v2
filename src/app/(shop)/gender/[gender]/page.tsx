@@ -1,6 +1,7 @@
 export const revalidate = 60; // 60 segundos
 
-import { getPaginatedProductsWithImages } from '@/actions';
+
+import { getPaginatedProductsWithImages } from '@/actions/product/product-pagination';
 import { Pagination, ProductGrid, Title } from '@/components';
 
 import { Gender } from '@prisma/client';
@@ -33,11 +34,6 @@ export default async function GenderByPage({ params, searchParams }: Props) {
   });
 
 
-  if ( products.length === 0 ) {
-    redirect(`/gender/${ gender }`);
-  }
-  
-
   const labels: Record<string, string>  = {
     'men': 'para hombres',
     'women': 'para mujeres',
@@ -48,6 +44,20 @@ export default async function GenderByPage({ params, searchParams }: Props) {
   // if ( id === 'kids' ) {
   //   notFound();
   // }
+
+  if (products.length === 0) {
+    return (
+      <>
+        <Title
+          title={`No se encontraron artículos ${labels[gender]}`}
+          subtitle="Intenta con una búsqueda diferente"
+          className="mb-2"
+        />
+        <div>No se encontraron productos que coincidan con tu búsqueda {labels[gender]}.</div>
+      </>
+    );
+  }
+  
 
 
   return (

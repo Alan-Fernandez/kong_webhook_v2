@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
 import clsx from 'clsx';
 
-import { placeOrder } from '@/actions';
+
 import { useAddressStore, useCartStore } from "@/store";
 import { currencyFormat } from '@/utils';
+import { placeOrder } from "@/actions/order/place-order";
 
 export const PlaceOrder = () => {
 

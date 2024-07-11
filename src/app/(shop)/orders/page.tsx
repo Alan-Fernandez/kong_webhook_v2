@@ -1,7 +1,7 @@
 export const revalidate = 0;
 
+import { getOrdersByUser } from "@/actions/order/get-orders-by-user";
 // https://tailwindcomponents.com/component/hoverable-table
-import { getOrdersByUser } from "@/actions";
 import { Title } from "@/components";
 
 import Link from "next/link";

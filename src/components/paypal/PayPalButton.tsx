@@ -3,7 +3,8 @@
 
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
 import { CreateOrderData, CreateOrderActions, OnApproveActions, OnApproveData } from '@paypal/paypal-js';
-import { paypalCheckPayment, setTransactionId } from '@/actions';
+import { setTransactionId } from '@/actions/payments/set-transaction-id';
+import { paypalCheckPayment } from '@/actions/payments/paypal-check-payment';
 
 interface Props {
   orderId: string;

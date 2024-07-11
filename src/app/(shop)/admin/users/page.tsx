@@ -1,11 +1,11 @@
 export const revalidate = 0;
 
 // https://tailwindcomponents.com/component/hoverable-table
-import {  getPaginatedUsers } from "@/actions";
 import { Pagination, Title } from "@/components";
 import { redirect } from "next/navigation";
 import { UsersTable } from './ui/UsersTable';
 import { Suspense } from "react";
+import { getPaginatedUsers } from "@/actions/user/get-paginater-users";
 
 export default async function OrdersPage() {
 

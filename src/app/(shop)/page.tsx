@@ -1,11 +1,14 @@
+// src/app/(shop)/page.tsx
+
 export const revalidate = 60; // 60 segundos
 
 
 import { redirect } from 'next/navigation';
 
-import { getPaginatedProductsWithImages } from '@/actions';
+
 import { Pagination, ProductGrid, Title } from '@/components';
 import { Suspense } from 'react';
+import { getPaginatedProductsWithImages } from '@/actions/product/product-pagination';
 
 
 
@@ -25,10 +28,18 @@ export default async function Home({ searchParams }: Props) {
   const { products, currentPage, totalPages } = await getPaginatedProductsWithImages({ page, query });
 
 
-  if ( products.length === 0 ) {
-    redirect('/');
+  if (products.length === 0) {
+    return (
+      <>
+        <Title
+          title="Tienda"
+          subtitle="No se encontraron productos"
+          className="mb-2"
+        />
+        <div>No se encontraron productos que coincidan con tu búsqueda.</div>
+      </>
+    );
   }
-
 
   return (
     <>

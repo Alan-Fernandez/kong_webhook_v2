@@ -1,7 +1,7 @@
 export const revalidate = 0;
 
+import { getPaginatedProductsWithImages } from "@/actions/product/product-pagination";
 // https://tailwindcomponents.com/component/hoverable-table
-import { getPaginatedOrders, getPaginatedProductsWithImages } from "@/actions";
 import { Pagination, ProductImage, Title } from "@/components";
 import { currencyFormat } from "@/utils";
 import Image from "next/image";

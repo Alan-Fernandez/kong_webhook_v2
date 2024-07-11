@@ -43,14 +43,12 @@ export const ProductsInCart = () => {
             alt={product.title}
             className="mr-5 rounded"
           />
-
           <div>
             <span>
               { product.size } - {product.title} ({ product.quantity })
             </span>
             
             <p className="font-bold">{ currencyFormat(product.price * product.quantity )  }</p>
-
           </div>
         </div>
       ))}

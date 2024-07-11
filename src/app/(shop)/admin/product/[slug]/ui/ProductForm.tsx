@@ -4,9 +4,10 @@ import { useForm } from "react-hook-form";
 import { Category, Product, ProductImage as ProductWithImage } from "@/interfaces";
 import Image from "next/image";
 import clsx from "clsx";
-import { createUpdateProduct, deleteProductImage } from "@/actions";
 import { useRouter } from 'next/navigation';
 import { ProductImage } from '@/components';
+import { createUpdateProduct } from "@/actions/product/create-update-product";
+import { deleteProductImage } from "@/actions/product/delete-product-image";
 
 interface Props {
   product: Partial<Product> & { ProductImage?: ProductWithImage[] };

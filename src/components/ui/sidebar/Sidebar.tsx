@@ -15,7 +15,7 @@ import {
 } from "react-icons/io5";
 
 import { useUIStore } from "@/store";
-import { logout } from "@/actions";
+import { logout } from "@/actions/auth/logout";
 import { useRouter } from "next/navigation";
 
 export const Sidebar = () => {

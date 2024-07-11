@@ -1,7 +1,9 @@
-import { getCategories, getProductBySlug } from '@/actions';
+
 import { Title } from '@/components';
 import { redirect } from 'next/navigation';
 import { ProductForm } from './ui/ProductForm';
+import { getProductBySlug } from '@/actions/product/get-product-by-slug';
+import { getCategories } from '@/actions/category/get-categories';
 
 interface Props {
   params: {

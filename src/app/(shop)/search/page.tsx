@@ -1,7 +1,6 @@
 export const revalidate = 0;
 
 // https://tailwindcomponents.com/component/hoverable-table
-import { getPaginatedOrders, getPaginatedProductsWithImages } from "@/actions";
 import { Pagination, ProductImage, Title } from "@/components";
 import { currencyFormat } from "@/utils";
 import Search from '@/components/ui/search/search';
@@ -11,6 +10,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { IoCardOutline } from "react-icons/io5";
 import { Suspense } from "react";
+import { getPaginatedProductsWithImages } from "@/actions/product/product-pagination";
 
 interface Props {
   searchParams: {

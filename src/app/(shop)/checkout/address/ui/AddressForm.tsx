@@ -9,7 +9,8 @@ import clsx from 'clsx';
 
 import type { Address, Country } from '@/interfaces';
 import { useAddressStore } from '@/store';
-import { deleteUserAddress, setUserAddress } from '@/actions';
+import { setUserAddress } from '@/actions/address/set-user-address';
+import { deleteUserAddress } from '@/actions/address/delete-user-address';
 
 
 type FormInputs = {
