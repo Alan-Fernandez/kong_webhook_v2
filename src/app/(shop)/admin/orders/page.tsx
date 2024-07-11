@@ -6,6 +6,7 @@ import { Pagination, Title } from "@/components";
 
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
 import { IoCardOutline } from "react-icons/io5";
 
 export default async function OrdersPage() {
@@ -86,8 +87,9 @@ export default async function OrdersPage() {
             
           </tbody>
         </table>
-
-        <Pagination totalPages={ 1 } />
+        <Suspense fallback={ <div>Loading...</div> } >
+          <Pagination totalPages={ 1 } />
+        </Suspense>
       </div>
     </>
   );

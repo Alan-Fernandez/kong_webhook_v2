@@ -10,6 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { IoCardOutline } from "react-icons/io5";
+import { Suspense } from "react";
 
 interface Props {
   searchParams: {
@@ -114,8 +115,9 @@ export default async function OrdersPage({ searchParams }: Props) {
             ))}
           </tbody>
         </table>
-
-        <Pagination totalPages={totalPages} />
+          <Suspense fallback={ <div>Loading...</div> } >
+            <Pagination totalPages={ totalPages }  />
+          </Suspense>
       </div>
     </>
   );

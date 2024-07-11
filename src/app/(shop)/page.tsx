@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation';
 
 import { getPaginatedProductsWithImages } from '@/actions';
 import { Pagination, ProductGrid, Title } from '@/components';
+import { Suspense } from 'react';
 
 
 
@@ -41,8 +42,9 @@ export default async function Home({ searchParams }: Props) {
         products={ products }
       />
 
-
-      <Pagination totalPages={ totalPages } />
+      <Suspense fallback={ <div>Loading...</div> } >
+        <Pagination totalPages={ totalPages } />
+      </Suspense>
       
     </>
   );

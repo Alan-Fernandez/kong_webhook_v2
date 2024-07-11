@@ -5,6 +5,7 @@ import { Pagination, ProductGrid, Title } from '@/components';
 
 import { Gender } from '@prisma/client';
 import { redirect } from 'next/navigation';
+import { Suspense } from 'react';
 
 
 
@@ -60,8 +61,9 @@ export default async function GenderByPage({ params, searchParams }: Props) {
       <ProductGrid 
         products={ products }
       />
-
-      <Pagination totalPages={ totalPages }  />
+      <Suspense fallback={ <div>Loading...</div> } >
+        <Pagination totalPages={ totalPages }  />
+      </Suspense>
       
     </>
   );

@@ -5,6 +5,7 @@ import {  getPaginatedUsers } from "@/actions";
 import { Pagination, Title } from "@/components";
 import { redirect } from "next/navigation";
 import { UsersTable } from './ui/UsersTable';
+import { Suspense } from "react";
 
 export default async function OrdersPage() {
 
@@ -20,8 +21,9 @@ export default async function OrdersPage() {
 
       <div className="mb-10">
         <UsersTable users={ users } />
-
-        <Pagination totalPages={ 1 } />
+        <Suspense fallback={ <div>Loading...</div> } >
+          <Pagination totalPages={ 1 } />
+        </Suspense>
       </div>
     </>
   );

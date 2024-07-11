@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 
 import Link from "next/link";
 import { IoSearchOutline, IoCartOutline } from "react-icons/io5";
@@ -53,7 +53,9 @@ export const TopMenu = () => {
       <div className="flex items-center">
         {(pathname !== '/cart' && !pathname.startsWith('/product')) && (
           <div className="flex items-center justify-between text-black">
-            <Search placeholder="Buscar productos..." />
+            <Suspense fallback={<div>Loading...</div>}>
+              <Search placeholder="Buscar productos..." />
+            </Suspense>
           </div>
         )}
 
