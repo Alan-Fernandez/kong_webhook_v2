@@ -14,6 +14,7 @@ export const ProductsInCart = () => {
 
 
   const [loaded, setLoaded] = useState(false);
+
   const productsInCart = useCartStore( state => state.cart );
 
 
@@ -36,10 +37,6 @@ export const ProductsInCart = () => {
             src={product.image.startsWith('http') ? product.image : `/products/${product.image}`}
             width={100}
             height={100}
-            style={{
-              width: "100px",
-              height: "100px",
-            }}
             alt={product.title}
             className="mr-5 rounded"
           />
