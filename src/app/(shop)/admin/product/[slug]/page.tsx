@@ -21,7 +21,6 @@ export default async function ProductPage({ params }: Props) {
     getProductBySlug(slug),
     getCategories()
   ]);
- 
 
   // Todo: new
   if ( !product && slug !== 'new' ) {

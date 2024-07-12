@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Swal from 'sweetalert2';
 
 import { QuantitySelector, SizeSelector } from "@/components";
 import type { CartProduct, Product, Size } from "@/interfaces";
@@ -12,7 +13,7 @@ interface Props {
 
 export const AddToCart = ({ product }: Props) => {
 
-  const addProductToCart = useCartStore( state => state.addProductTocart );
+  const addProductToCart = useCartStore(state => state.addProductTocart);
 
   const [size, setSize] = useState<Size | undefined>();
   const [quantity, setQuantity] = useState<number>(1);
@@ -21,7 +22,16 @@ export const AddToCart = ({ product }: Props) => {
   const addToCart = () => {
     setPosted(true);
 
-    if (!size) return;
+    if (!size) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Debe de seleccionar una talla",
+        showConfirmButton: false,
+        timer: 1500
+      });
+      return;
+    }
 
     const cartProduct: CartProduct = {
       id: product.id,
@@ -33,12 +43,28 @@ export const AddToCart = ({ product }: Props) => {
       image: product.images[0]
     }
 
-    addProductToCart(cartProduct);
-    setPosted(false);
-    setQuantity(1);
-    setSize(undefined);
-
-
+    try {
+      addProductToCart(cartProduct);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Producto agregado al carrito",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    } catch (error) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Error al agregar el producto",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    } finally {
+      setPosted(false);
+      setQuantity(1);
+      setSize(undefined);
+    }
   };
 
 

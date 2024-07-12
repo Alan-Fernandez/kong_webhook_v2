@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import clsx from "clsx";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import {
   IoCloseOutline,
   IoLogInOutline,
@@ -27,7 +27,7 @@ export const Sidebar = () => {
   const isAdmin = session?.user.role === "admin";
   const router = useRouter();
   const handleLogout = async () => {
-    await logout();
+    await signOut();
     // router.push('/auth/login'); // Redirige a la página de login
   };
 

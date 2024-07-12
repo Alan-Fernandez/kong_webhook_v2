@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { ProductImage } from '@/components';
 import { createUpdateProduct } from "@/actions/product/create-update-product";
 import { deleteProductImage } from "@/actions/product/delete-product-image";
+import Swal from 'sweetalert2'
 
 interface Props {
   product: Partial<Product> & { ProductImage?: ProductWithImage[] };
@@ -88,23 +89,53 @@ export const ProductForm = ({ product, categories }: Props) => {
 
     const { ok, message, product: updatedProduct } = await createUpdateProduct(formData);
 
-    if ( !ok ) {
-      alert(`Error al actualizar el producto: ${message}`);
+    if (!ok) {
+      Swal.fire({
+        title: "Error",
+        text: `Error al actualizar el producto: ${message}`,
+        icon: "error",
+        showConfirmButton: true,
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Ok'
+      });
       return;
     }
 
-    router.replace(`/admin/product/${ updatedProduct?.slug }`)
+    Swal.fire({
+      title: "Good job!",
+      text: "Producto actualizado correctamente!",
+      icon: "success",
+      showConfirmButton: true,
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Ok'
+    });
 
-
+    router.replace(`/admin/product/${updatedProduct?.slug}`);
   };
 
   const handleDeleteImage = async (imageId: number, imageUrl: string) => {
     const { ok, message } = await deleteProductImage(imageId, imageUrl);
 
     if (!ok) {
-      alert(`Error al eliminar la imagen: ${message}`);
+      Swal.fire({
+        title: "Error",
+        text: `Error al eliminar la imagen: ${message}`,
+        icon: "error",
+        showConfirmButton: true,
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Ok' 
+      });
       return;
     }
+
+    Swal.fire({
+      title: "Imagen eliminada",
+      text: "La imagen ha sido eliminada correctamente",
+      icon: "success",
+      showConfirmButton: true,
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Ok' 
+    });
 
     // Manejar la actualización del estado o navegación de la página
     router.refresh(); // Usar refresh en vez de reload
