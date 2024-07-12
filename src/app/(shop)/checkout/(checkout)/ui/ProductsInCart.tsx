@@ -33,7 +33,7 @@ export const ProductsInCart = () => {
       {productsInCart.map((product) => (
         <div key={ `${ product.slug }-${ product.size }`  } className="flex mb-5">
           <Image
-            src={`/products/${product.image }`}
+            src={product.image.startsWith('http') ? product.image : `/products/${product.image}`}
             width={100}
             height={100}
             style={{
