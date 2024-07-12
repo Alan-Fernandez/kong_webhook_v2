@@ -86,16 +86,28 @@ export const ProductForm = ({ product, categories }: Props) => {
 
 
 
-    const { ok, product:updatedProduct } = await createUpdateProduct(formData);
+    const { ok, message, product: updatedProduct } = await createUpdateProduct(formData);
 
     if ( !ok ) {
-      alert('Producto no se pudo actualizar');
+      alert(`Error al actualizar el producto: ${message}`);
       return;
     }
 
     router.replace(`/admin/product/${ updatedProduct?.slug }`)
 
 
+  };
+
+  const handleDeleteImage = async (imageId: number, imageUrl: string) => {
+    const { ok, message } = await deleteProductImage(imageId, imageUrl);
+
+    if (!ok) {
+      alert(`Error al eliminar la imagen: ${message}`);
+      return;
+    }
+
+    // Manejar la actualización del estado o navegación de la página
+    router.refresh(); // Usar refresh en vez de reload
   };
 
   return (
@@ -238,7 +250,7 @@ export const ProductForm = ({ product, categories }: Props) => {
 
                 <button
                   type="button"
-                  onClick={() => deleteProductImage(image.id, image.url)}
+                  onClick={() => handleDeleteImage(image.id, image.url)}
                   className="btn-danger w-full rounded-b-xl"
                 >
                   Eliminar

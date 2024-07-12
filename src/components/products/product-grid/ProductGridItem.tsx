@@ -18,22 +18,27 @@ export const ProductGridItem = ( { product }: Props ) => {
 
   console.log(`displayImage: `,displayImage);
 
-  const getImageSrc = (image: string) => {
-    return image.startsWith('http') ? image : `/products/${image}`;
-  };
-
+const getImageSrc = (image: string | undefined) => {
+  if (!image) {
+    // Retorna una imagen predeterminada o maneja el caso de imagen indefinida
+    return '/path/to/default/image.png'; // Asegúrate de reemplazar esto con una ruta válida a una imagen predeterminada
+  }
+  return image.startsWith('http') ? image : `/products/${image}`;
+};
   return (
     <div className="rounded-md overflow-hidden fade-in">
       <Link href={ `/product/${ product.slug }` }>
-        <Image
-          src={getImageSrc(displayImage)}
-          alt={ product.title }
-          className="w-full object-cover rounded"
-          width={ 500 }
-          height={ 500 }
-          onMouseEnter={ () => setDisplayImage( product.images[1] )  }
-          onMouseLeave={ () => setDisplayImage( product.images[0] ) }
-        />
+    <div className="relative w-full h-[500px]"> {/* Contenedor con tamaño fijo */}
+      <Image
+        src={getImageSrc(displayImage)}
+        alt={product.title}
+        layout="fill"
+        objectFit="contain"
+        className="rounded"
+        onMouseEnter={() => setDisplayImage(product.images[1])}
+        onMouseLeave={() => setDisplayImage(product.images[0])}
+      />
+    </div>
       </Link>
 
       <div className="p-4 flex flex-col">
