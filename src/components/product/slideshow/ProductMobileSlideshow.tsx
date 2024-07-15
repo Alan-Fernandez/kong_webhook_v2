@@ -21,9 +21,13 @@ export const ProductMobileSlideshow = ({ images, title, className }: Props) => {
   return (
     <div className={className}>
       <Swiper
+        style={{
+          width: '100vw',
+          height: '500px'
+        }}
         pagination
         autoplay={{
-          delay: 2500,
+          delay: 2500
         }}
         modules={[FreeMode, Autoplay, Pagination]}
         className="mySwiper2"
@@ -33,7 +37,7 @@ export const ProductMobileSlideshow = ({ images, title, className }: Props) => {
             <Image
               width={600}
               height={500}
-              src={`/products/${image}`}
+              src={image.startsWith('http') ? image : `/products/${image}`}
               alt={title}
               className="object-cover w-full h-auto"
             />

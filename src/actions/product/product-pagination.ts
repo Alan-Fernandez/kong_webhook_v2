@@ -62,9 +62,9 @@ export const getPaginatedProductsWithImages = async ({
       })),
     };
   } catch (error) {
-    // Manejo detallado de errores
     if (error instanceof Error) {
       console.error("Error general:", error.message);
+      console.error("Detalle del error:", error); // Imprime el error completo
     } else {
       console.error("Error desconocido:", error);
     }

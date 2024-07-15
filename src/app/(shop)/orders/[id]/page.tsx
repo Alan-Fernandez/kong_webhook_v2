@@ -41,7 +41,7 @@ export default async function OrdersByIdPage({ params }: Props) {
                 className="flex mb-5"
               >
                 <Image
-                  src={`/products/${item.product.ProductImage[0].url}`}
+                  src={`${item.product.ProductImage[0].url}`}
                   width={100}
                   height={100}
                   style={{
