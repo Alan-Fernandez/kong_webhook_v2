@@ -16,24 +16,21 @@ export const ProductGridItem = ( { product }: Props ) => {
 
   const [ displayImage, setDisplayImage ] = useState( product.images[ 0 ] );
 
-  console.log(`displayImage: `,displayImage);
-
 const getImageSrc = (image: string | undefined) => {
   if (!image) {
-    // Retorna una imagen predeterminada o maneja el caso de imagen indefinida
-    return '/path/to/default/image.png'; // Asegúrate de reemplazar esto con una ruta válida a una imagen predeterminada
+    return '/path/to/default/image.png';
   }
-  return image.startsWith('http') ? image : `/products/${image}`;
+  return image.startsWith('https') ? image : `/products/${image}`;
 };
   return (
     <div className="rounded-md overflow-hidden fade-in">
       <Link href={ `/product/${ product.slug }` }>
-    <div className="relative w-full h-[500px]"> {/* Contenedor con tamaño fijo */}
+    <div className="relative w-full h-0 pb-[100%]"> {/* Contenedor con tamaño fijo */}
       <Image
         src={getImageSrc(displayImage)}
         alt={product.title}
         layout="fill"
-        objectFit="contain"
+        objectFit="cover"
         className="rounded"
         onMouseEnter={() => setDisplayImage(product.images[1])}
         onMouseLeave={() => setDisplayImage(product.images[0])}

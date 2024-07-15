@@ -8,15 +8,16 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
-/* 
-@media (prefers-color-scheme: dark) {
+
+/* @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
-} */ 
+} */
 
+/* Estilos globales */
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -28,7 +29,7 @@ body {
 }
 
 
-
+/* Animación fadeIn */
 @keyframes fadeIn {
   0% {opacity: 0;}
   100% {opacity: 1;}
@@ -49,7 +50,7 @@ body {
   animation-name: fadeIn;
 }
 
-
+/* Botones */
 .btn-primary {
   @apply bg-blue-600 hover:bg-blue-800 text-white py-2 px-4 rounded transition-all;
 }
@@ -64,4 +65,22 @@ body {
 
 .btn-danger {
   @apply bg-red-500 hover:bg-red-700 text-white py-2 px-4 transition-all;
+}
+
+
+/* Contenedor de imagen responsivo */
+.image-container {
+  @apply w-full h-auto;
+}
+
+@media (min-width: 768px) {
+  .image-container {
+    @apply w-32 h-32;
+  }
+}
+
+@media (min-width: 1024px) {
+  .image-container {
+    @apply w-40 h-40;
+  }
 }

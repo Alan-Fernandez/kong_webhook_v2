@@ -1,3 +1,6 @@
+
+// product/product-image/ProductImage.tsx
+
 import Image from 'next/image';
 
 interface Props {
@@ -26,12 +29,14 @@ export const ProductImage = ({
 
   return (
     <Image
-      src={ localSrc }
-      width={ width }
-      height={ height}
-      alt={ alt }
-      className={ className }
-      style={ style }
+      src={localSrc}
+      width={width}
+      height={height}
+      alt={alt}
+      className={className}
+      style={style}
+      layout="responsive"
+      objectFit="cover"
     />
   );
 };
