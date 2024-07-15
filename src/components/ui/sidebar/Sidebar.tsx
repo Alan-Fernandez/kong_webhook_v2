@@ -14,9 +14,27 @@ import {
   IoTicketOutline,
 } from "react-icons/io5";
 
+import { useEffect } from 'react';
 import { useUIStore } from "@/store";
 import { logout } from "@/actions/auth/logout";
 import { useRouter } from "next/navigation";
+
+const links = [
+  { name: 'Hombres', 
+    href: '/gender/men', 
+    // icon: HomeIcon 
+  },
+  {
+    name: 'Mujeres',
+    href: '/gender/women',
+    // icon: DocumentDuplicateIcon,
+  },
+  { 
+    name: 'Niños', 
+    href: '/gender/kid', 
+    // icon: UserGroupIcon 
+  },
+];
 
 export const Sidebar = () => {
   const isSideMenuOpen = useUIStore((state) => state.isSideMenuOpen);
@@ -30,6 +48,18 @@ export const Sidebar = () => {
     await signOut();
     // router.push('/auth/login'); // Redirige a la página de login
   };
+
+    useEffect(() => {
+    if (isSideMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isSideMenuOpen]);
 
   return (
     <div>
@@ -49,7 +79,7 @@ export const Sidebar = () => {
       {/* Sidemenu */}
       <nav
         className={clsx(
-          "fixed p-5 right-0 top-0 w-[500px] h-screen bg-white z-20 shadow-2xl transform transition-all duration-300",
+          "fixed p-5 right-0 top-0 w-[500px] h-screen bg-white z-20 shadow-2xl transform transition-all duration-300 overflow-y-auto",
           {
             "translate-x-full": !isSideMenuOpen,
           }
@@ -72,6 +102,21 @@ export const Sidebar = () => {
         </div>
 
         {/* Menú */}
+
+        {/* Enlaces adicionales para móvil */}
+        <div className="block md:hidden mt-10">
+          {links.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              onClick={() => closeMenu()}
+              className="flex items-center mt-5 p-2 hover:bg-gray-100 rounded transition-all"
+            >
+              {/* <link.icon size={30} /> */}
+              <span className="ml-3 text-xl">{link.name}</span>
+            </Link>
+          ))}
+        </div>
 
         {isAuthenticated && (
           <>

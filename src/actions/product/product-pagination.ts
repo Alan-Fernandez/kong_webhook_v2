@@ -18,7 +18,7 @@ export const getPaginatedProductsWithImages = async ({
 }: PaginationOptions) => {
   // Validaciones y saneamiento de parámetros
   page = isNaN(Number(page)) || page < 1 ? 1 : Math.floor(page);
-  take = isNaN(Number(take)) || take < 1 ? 12 : Math.min(Math.floor(take), 100); // Límite máximo de 100 para evitar sobrecarga
+  take = isNaN(Number(take)) || take < 1 ? 12 : Math.min(Math.floor(take), 100);
   
   try {
     // Construcción del filtro dinámico
